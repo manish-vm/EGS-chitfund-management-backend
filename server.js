@@ -26,8 +26,9 @@ const path = require('path');
 const app = express();
 
 const allowedOrigins = [
-  "http://localhost:3000",
-  "https://egs-chitfund-management-frontend-qk.vercel.app"
+  'http://localhost:3000',
+  'https://egs-chitfund.com',
+  'https://egs-chitfund-management-frontend-qk.vercel.app'
 ];
 
 // CORS FIX
@@ -81,4 +82,5 @@ mongoose.connect(MONGO_URI, {
   console.error('❌ MongoDB connection failed:', err.message);
   process.exit(1);
 });
+
 
