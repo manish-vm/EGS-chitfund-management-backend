@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const bodyParser = require('body-parser');
+
 
 dotenv.config();
 
@@ -27,31 +27,19 @@ const path = require('path');
 const app = express();
 
 const allowedOrigins = [
-  'http://localhost:3000',
-  'https://egs-chitfund.com',
-  'https://egs-chitfund-management-frontend-qk.vercel.app'
+  "http://localhost:3000",
+  "https://egschitfund.com",
+  "https://egs-chitfund-management-frontend-qkf1-3fp9xy0oy.vercel.app/"
 ];
 
 // CORS FIX
 app.use(cors({
-  origin: function(origin, callback) {
-    // allow requests with no origin (like Postman)
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('CORS not allowed for this origin'));
-    }
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) callback(null, true);
+    else callback(new Error('Not allowed by CORS'));
   },
-  credentials: true,          // allow cookies/auth headers
-  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  credentials: true,
 }));
-
-app.options('*', cors());
-
-// ======== BODY PARSER ========
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 // JSON SIZE FIX (IMPORTANT FOR BASE64 IMAGES)
 app.use(express.json({ limit: "50mb" }));
@@ -95,7 +83,3 @@ mongoose.connect(MONGO_URI, {
   console.error('❌ MongoDB connection failed:', err.message);
   process.exit(1);
 });
-
-
-
-
