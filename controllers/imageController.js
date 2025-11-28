@@ -1,4 +1,4 @@
-const Image = require("../models/ImageModel");
+const Image = require("../models/imageModel");
 
 // Upload multiple base64 images
 const uploadImages = async (req, res) => {
