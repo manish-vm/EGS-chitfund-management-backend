@@ -3,7 +3,7 @@ const Image = require("../models/ImageModel");
 // Upload multiple base64 images
 const uploadImages = async (req, res) => {
   try {
-    const { images } = req.body; // array of { name, data }
+    const { images } = req.body;
 
     if (!images || !Array.isArray(images)) {
       return res.status(400).json({ error: "Images array required" });
@@ -40,11 +40,17 @@ const deleteImage = async (req, res) => {
 const updateImage = async (req, res) => {
   try {
     const { name, data } = req.body;
+
+    if (!name || !data) {
+      return res.status(400).json({ error: "Name & data required" });
+    }
+
     const updated = await Image.findByIdAndUpdate(
       req.params.id,
       { name, data },
       { new: true }
     );
+
     res.json(updated);
   } catch (err) {
     res.status(500).json({ error: err.message });
