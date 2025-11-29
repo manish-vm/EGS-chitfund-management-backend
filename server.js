@@ -27,7 +27,7 @@ const path = require('path');
 const app = express();
 
 const allowedOrigins = [
-  "https://egs-chitfund-management-frontend-qkf1-3fp9xy0oy.vercel.app"
+  "https://egs-chitfund-management-frontend-qk.vercel.app"
 ];
 
 // CORS FIX
