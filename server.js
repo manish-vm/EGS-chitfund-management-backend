@@ -66,7 +66,7 @@ app.use(notFound);
 app.use(errorHandler);
 
 // DB CONNECTION
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
 
 mongoose.connect(MONGO_URI, {
@@ -81,4 +81,5 @@ mongoose.connect(MONGO_URI, {
   console.error('❌ MongoDB connection failed:', err.message);
   process.exit(1);
 });
+
 
